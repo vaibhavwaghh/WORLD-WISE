@@ -8,14 +8,16 @@ import Login from "./pages/Login";
 import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
 import { useEffect, useState } from "react";
+
 function App() {
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const url = import.meta.env.VITE_REACT_APP_BASE_URL;
   useEffect(function () {
     async function fetchCities() {
       try {
         setIsLoading(true);
-        const res = await fetch("http://localhost:8000/cities");
+        const res = await fetch(`${url}/cities`);
         const data = await res.json();
         setCities(data);
       } catch (err) {
