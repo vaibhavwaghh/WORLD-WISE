@@ -1,9 +1,10 @@
-import { useEffect } from "react";
-import { useCities } from "../contexts/CitiesContext";
+import { useContext, useEffect } from "react";
+// import { useCities } from "../contexts/CitiesContext";
 import styles from "./City.module.css";
 import { useParams, useSearchParams } from "react-router-dom";
 import BackButton from "./BackButton";
 import Spinner from "./Spinner";
+import { CitiesContext } from "../contexts/CitiesContext";
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -15,16 +16,21 @@ const formatDate = (date) =>
 function City() {
   // TEMP DATA
   const { id } = useParams();
-  const { getCity, currentCity, isLoading } = useCities();
-  useEffect(
-    function () {
-      getCity(id);
-    },
-    [id]
-  );
+  const { state } = useContext(CitiesContext);
+  const cities = state.cities;
+  const currentCity = cities.filter((city) => city.id == id);
+  console.log("THIS IS CURRENT CITY", currentCity);
+  // const { getCity, currentCity, isLoading } = useCities();
+  // useEffect(
+  //   function () {
+  //     getCity(id);
+  //   },
+  //   [id]
+  // );
 
-  const { cityName, emoji, date, notes } = currentCity;
-  if (isLoading) return <Spinner />;
+  const { cityName, emoji, date, notes } = currentCity[0];
+  console.log(cityName);
+  // if (isLoading) return <Spinner />;
   return (
     <>
       <div className={styles.city}>

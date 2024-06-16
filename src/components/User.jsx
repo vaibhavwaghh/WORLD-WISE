@@ -1,19 +1,25 @@
+import useLogout from "../services/useLogout";
+import { useUserDetails } from "../services/useUserDetails";
+import Spinner from "./Spinner";
 import styles from "./User.module.css";
-import { useAuth } from "../contexts/FakeAuthContex";
+// import { useAuth } from "../contexts/FakeAuthContex";
 import { useNavigate } from "react-router-dom";
 
-function User() {
-  const { user, logout } = useAuth();
+function User({ name }) {
+  // const { user, logout } = useAuth();
+
   const navigate = useNavigate();
+  const { logout, isLoading } = useLogout();
   function handleClick() {
     logout();
     navigate("/");
   }
 
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <div className={styles.user}>
-      <img src={user.avatar} alt={user.name} />
-      <span>Welcome, {user.name}</span>
+      <span>Welcome, {name}</span>
       <button onClick={handleClick}>Logout</button>
     </div>
   );

@@ -1,10 +1,12 @@
-import { useCities } from "../contexts/CitiesContext";
+// import { useCities } from "../contexts/CitiesContext";
+
 import styles from "./CityItem.module.css";
 import { Link } from "react-router-dom";
+import Spinner from "./Spinner";
+import useDeleteCity from "../services/useDeleteCity";
 function CityItem({ city }) {
-  const { currentCity, deleteCity } = useCities();
-  const { cityName, emoji, date, id, position } = city;
-  // console.log(position);
+  const { lat, lng, emoji, cityName, date, id } = city;
+  const { isLoading, deleteCity } = useDeleteCity();
   const formatDate = (date) =>
     new Intl.DateTimeFormat("en", {
       day: "numeric",
@@ -13,16 +15,18 @@ function CityItem({ city }) {
     }).format(new Date(date));
   function handleClick(e) {
     e.preventDefault();
-    console.log(id);
     deleteCity(id);
   }
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <li>
       <Link
-        className={`${styles.cityItem} ${
-          id === currentCity.id ? styles["cityItem--active"] : ""
-        }`}
-        to={`${id}?lat=${position.lat}&lng=${position.lng}`}
+        className={`${styles.cityItem}`}
+        // className={`${styles.cityItem} ${
+        //   id === city.id ? styles["cityItem--active"] : ""
+        // }`}
+        to={`${id}?lat=${lat}&lng=${lng}`}
       >
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
@@ -33,6 +37,7 @@ function CityItem({ city }) {
       </Link>
     </li>
   );
+  // return <>{city.cityName}</>;
 }
 
 export default CityItem;

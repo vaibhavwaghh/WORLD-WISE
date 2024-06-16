@@ -2,11 +2,15 @@ import Spinner from "./Spinner";
 import styles from "./CountryList.module.css";
 import Message from "./Message";
 import CountryItem from "./CountryItem";
-import { useCities } from "../contexts/CitiesContext";
+import { useContext } from "react";
+import { CitiesContext } from "../contexts/CitiesContext";
+// import { useCities } from "../contexts/CitiesContext";
 function CountryList() {
-  const { cities, isLoading } = useCities();
+  // const { cities, isLoading } = useCities();
 
-  if (isLoading) return <Spinner />;
+  // if (isLoading) return <Spinner />;
+  const { state } = useContext(CitiesContext);
+  const cities = state?.cities;
   if (!cities.length)
     return (
       <Message message="Add your first city by clicking on a city in the map" />
@@ -21,10 +25,11 @@ function CountryList() {
   return (
     <ul className={styles.countryList}>
       {countries.map((country) => (
-        <CountryItem country={country} />
+        <CountryItem country={country} key={country.id} />
       ))}
     </ul>
   );
+  // return <>VAIBHAV</>;
 }
 
 export default CountryList;

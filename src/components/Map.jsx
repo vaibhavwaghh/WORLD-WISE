@@ -9,13 +9,14 @@ import {
   useMap,
   useMapEvents,
 } from "react-leaflet";
-import { useEffect, useState } from "react";
-import { useCities } from "../contexts/CitiesContext";
+import { useContext, useEffect, useState } from "react";
+// import { useCities } from "../contexts/CitiesContext";
 import { useGeolocation } from "../hooks/useGeoLocation";
 import useUrlPosition from "../hooks/useUrlPosition";
 import Button from "./Button";
+import { CitiesContext } from "../contexts/CitiesContext";
+
 function Map() {
-  const { cities } = useCities();
   const navigate = useNavigate();
   const [mapLat, mapLng] = useUrlPosition();
   const [mapPosition, setMapPosition] = useState([40, 0]);
@@ -24,6 +25,9 @@ function Map() {
     position: geolocationPosition,
     getPosition,
   } = useGeolocation();
+  const { state } = useContext(CitiesContext);
+  console.log("CURR STATE", state);
+  const cities = state?.cities;
   useEffect(
     function () {
       if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
@@ -38,6 +42,7 @@ function Map() {
     },
     [geolocationPosition]
   );
+
   return (
     <div
       className={styles.mapContainer}
@@ -61,10 +66,7 @@ function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {cities.map((city) => (
-          <Marker
-            position={[city.position.lat, city.position.lng]}
-            key={city.id}
-          >
+          <Marker position={[city.lat, city.lng]} key={city.id}>
             <Popup>
               <span>{city.emoji}</span>
               <span>{city.cityName}</span>
@@ -76,6 +78,7 @@ function Map() {
       </MapContainer>
     </div>
   );
+  // return <>WAGTYA</>;
 }
 
 function ChangeCentre({ position }) {

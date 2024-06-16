@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Form.module.css";
 import Button from "./Button";
@@ -8,7 +8,9 @@ import Message from "./Message";
 import Spinner from "./Spinner";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useCities } from "../contexts/CitiesContext";
+import useCreateCity from "../services/useCreateCity";
+import { CitiesContext } from "../contexts/CitiesContext";
+// import { useCities } from "../contexts/CitiesContext";
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
     .toUpperCase()
@@ -26,7 +28,10 @@ function Form() {
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
   const [geoCodingError, setGeoCodingError] = useState("");
-  const { createCity, isLoading } = useCities();
+  const { state } = useContext(CitiesContext);
+  let userId = state.userId;
+  console.log("THIS IS STATE", state);
+  const { createCity, isLoading } = useCreateCity();
   const navigate = useNavigate();
   const BASE_URL = import.meta.env.VITE_REACT_APP_CITY_URL;
   useEffect(
@@ -68,7 +73,9 @@ function Form() {
       emoji,
       date,
       notes,
-      position: { lat, lng },
+      lat,
+      lng,
+      userId,
     };
     console.log(newCity);
     createCity(newCity);
