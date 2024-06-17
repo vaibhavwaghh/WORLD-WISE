@@ -1,5 +1,4 @@
-import styles from "./Map.module.css";
-import { useSearchParams } from "react-router-dom";
+import styles from "./../../cssFiles/Map.module.css";
 import { useNavigate } from "react-router-dom";
 import {
   MapContainer,
@@ -10,11 +9,11 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import { useContext, useEffect, useState } from "react";
-// import { useCities } from "../contexts/CitiesContext";
-import { useGeolocation } from "../hooks/useGeoLocation";
-import useUrlPosition from "../hooks/useUrlPosition";
-import Button from "./Button";
-import { CitiesContext } from "../contexts/CitiesContext";
+
+import { useGeolocation } from "../../hooks/useGeoLocation";
+import useUrlPosition from "../../hooks/useUrlPosition";
+import Button from "../../pages/Button";
+import { CitiesContext } from "../../contexts/CitiesContext";
 
 function Map() {
   const navigate = useNavigate();

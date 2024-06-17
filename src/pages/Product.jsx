@@ -1,5 +1,5 @@
-import styles from "./Product.module.css";
-import NavBar from "../components/NavBar";
+import styles from "../cssFiles/Product.module.css";
+import NavBar from "./NavBar";
 export default function Product() {
   return (
     <main className={styles.product}>
@@ -10,17 +10,16 @@ export default function Product() {
           alt="person with dog overlooking mountain with sunset"
         />
         <div>
-          <h2>About WorldWide.</h2>
+          <h2>Discover the Power of Seamless Location Tracking</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo est
-            dicta illum vero culpa cum quaerat architecto sapiente eius non
-            soluta, molestiae nihil laborum, placeat debitis, laboriosam at fuga
-            perspiciatis?
+            Welcome to WorldWise GeoLocation! Our powerful and user-friendly
+            tracker is designed to help you record and manage your travels with
+            ease.
           </p>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis
-            doloribus libero sunt expedita ratione iusto, magni, id sapiente
-            sequi officiis et.
+            Whether you're a frequent traveler, a business professional, or
+            simply someone who loves exploring new places, our tracker is the
+            perfect tool for you.
           </p>
         </div>
       </section>

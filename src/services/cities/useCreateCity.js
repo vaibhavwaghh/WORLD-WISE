@@ -1,16 +1,17 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteCityApi } from "./apiAuth";
+import { createNewCity } from "../auth/apiAuth";
 
-function useDeleteCity() {
+function useCreateCity() {
   const queryClient = useQueryClient();
-  const { mutate: deleteCity, isLoading } = useMutation({
-    mutationFn: deleteCityApi,
+  const { mutate: createCity, isLoading } = useMutation({
+    mutationFn: createNewCity,
     onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: ["allCities"],
       });
     },
   });
-  return { deleteCity, isLoading };
+  return { createCity, isLoading };
 }
-export default useDeleteCity;
+
+export default useCreateCity;

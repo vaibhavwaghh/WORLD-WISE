@@ -1,14 +1,9 @@
-import Spinner from "./Spinner";
-import styles from "./CountryList.module.css";
-import Message from "./Message";
-import CountryItem from "./CountryItem";
 import { useContext } from "react";
-import { CitiesContext } from "../contexts/CitiesContext";
-// import { useCities } from "../contexts/CitiesContext";
+import styles from "../../../cssFiles/CountryList.module.css";
+import Message from "../../../pages/Message";
+import CountryItem from "./CountryItem";
+import { CitiesContext } from "../../../contexts/CitiesContext";
 function CountryList() {
-  // const { cities, isLoading } = useCities();
-
-  // if (isLoading) return <Spinner />;
   const { state } = useContext(CitiesContext);
   const cities = state?.cities;
   if (!cities.length)
@@ -29,7 +24,6 @@ function CountryList() {
       ))}
     </ul>
   );
-  // return <>VAIBHAV</>;
 }
 
 export default CountryList;

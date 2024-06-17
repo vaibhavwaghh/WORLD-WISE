@@ -1,22 +1,19 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import CityList from "./components/CityList";
-import CountryList from "./components/CountryList";
-import Form from "./components/Form";
-import City from "./components/City";
+import { lazy, Suspense } from "react";
+import CityList from "./features/maps/cities/CityList";
+import CountryList from "./features/maps/countries/CountryList";
+import Form from "./features/maps/Form";
+import City from "./features/maps/cities/City";
 import { CitiesProvider } from "./contexts/CitiesContext";
 import ProtectedRoute from "./pages/ProtectedRoute";
-import { lazy, Suspense } from "react";
-import SpinnerFullPage from "./components/SpinnerFullPage";
+import Spinner from "./pages/Spinner";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import LoginSignup from "./pages/LoginSignup";
+import LoginSignup from "./features/authentication/LoginSignup";
 const HomePage = lazy(() => import("./pages/HomePage"));
-const Pricing = lazy(() => import("./pages/Pricing"));
 const Product = lazy(() => import("./pages/product"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
-const AppLayout = lazy(() => import("./pages/AppLayout"));
-const Login = lazy(() => import("./pages/Login"));
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -24,16 +21,14 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <div>
-      {/* <AuthProvider> */}
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
         <CitiesProvider>
           <BrowserRouter>
-            <Suspense fallback={<SpinnerFullPage />}>
+            <Suspense fallback={<Spinner />}>
               <Routes>
                 <Route index element={<HomePage />} />
                 <Route path="product" element={<Product />} />
-                <Route path="pricing" element={<Pricing />} />
                 <Route path="app" element={<ProtectedRoute />}>
                   <Route
                     index
@@ -61,14 +56,13 @@ function App() {
                 fontSize: "16px",
                 maxWidth: "500px",
                 padding: "16px 24px",
-                backgroundColor: "var(--color-grey-0)",
-                color: "var(--color-grey-700)",
+                backgroundColor: "white",
+                color: "black",
               },
             }}
           />
         </CitiesProvider>
       </QueryClientProvider>
-      {/* </AuthProvider> */}
     </div>
   );
 }

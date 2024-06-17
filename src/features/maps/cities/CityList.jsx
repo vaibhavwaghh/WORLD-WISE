@@ -1,11 +1,9 @@
-import Spinner from "./Spinner";
-import CityItem from "./CityItem";
-import styles from "./CityList.module.css";
-import Message from "./Message";
 import { useContext } from "react";
-import { CitiesContext } from "../contexts/CitiesContext";
-// import { useCities } from "../contexts/CitiesContext";
-// import { useAllCity } from "../services/useAllCity";
+import CityItem from "./CityItem";
+import styles from "../../../cssFiles/CityList.module.css";
+import Message from "../../../pages/Message";
+import { CitiesContext } from "../../../contexts/CitiesContext";
+
 function CityList() {
   const { state, dispatch } = useContext(CitiesContext);
 

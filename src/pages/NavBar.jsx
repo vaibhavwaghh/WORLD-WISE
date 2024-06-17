@@ -1,14 +1,11 @@
 import { NavLink } from "react-router-dom";
-import styles from "./NavBar.module.css";
+import styles from "../cssFiles/NavBar.module.css";
 import Logo from "./Logo";
 function NavBar() {
   return (
     <nav className={styles.nav}>
       <Logo />
       <ul>
-        <li>
-          <NavLink to="/pricing">Pricing</NavLink>
-        </li>
         <li>
           <NavLink to="/product">Product</NavLink>
         </li>

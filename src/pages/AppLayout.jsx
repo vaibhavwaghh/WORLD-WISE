@@ -1,13 +1,11 @@
 // import AppNav from "../components/AppNav";
-import SideBar from "../components/SideBar";
-import styles from "./AppLayout.module.css";
-import Map from "../components/Map";
-import User from "../components/User";
-import { useUserDetails } from "../services/useUserDetails";
-import Spinner from "../components/Spinner";
-import { useAllCity } from "../services/useAllCity";
-import { useContext } from "react";
-import { CitiesContext } from "../contexts/CitiesContext";
+import SideBar from "./SideBar";
+import styles from "./../cssFiles/AppLayout.module.css";
+import Map from "../features/maps/Map";
+import User from "../features/maps/UserDetails/User";
+import { useUserDetails } from "../services/user/useUserDetails";
+import Spinner from "./Spinner";
+
 function AppLayout({ email }) {
   const { isLoading, data: userDetails } = useUserDetails(email);
   console.log("THIS IS USER DETAILS", userDetails);

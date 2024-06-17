@@ -1,13 +1,13 @@
-import "./LoginSignup.css";
+import "../../cssFiles/LoginSignup.css";
 import { IoPerson } from "react-icons/io5";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 import { useState } from "react";
-import Button from "../../ui/Button";
-import useSignUp from "../services/useSignUp";
-import Spinner from "../components/Spinner";
-import useLogin from "../services/useLogin";
-import useCreateUser from "../services/useCreateUser";
+
+import useSignUp from "../../services/auth/useSignUp";
+import Spinner from "../../pages/Spinner";
+import useLogin from "../../services/auth/useLogin";
+import useCreateUser from "../../services/auth/useCreateUser";
 
 function LoginSignup() {
   const [action, setAction] = useState("Login");
@@ -37,41 +37,43 @@ function LoginSignup() {
           <div className="text">{action}</div>
           <div className="underline"></div>
         </div>
-        {action === "Sign up" && (
+        <form action="">
+          {action === "Sign up" && (
+            <div className="inputs">
+              <IoPerson className="icon" />
+              <input
+                type="text"
+                placeholder="Name"
+                onChange={(e) => setFullName(e.target.value)}
+              />
+            </div>
+          )}
           <div className="inputs">
-            <IoPerson className="icon" />
+            <MdEmail className="icon" />
             <input
-              type="text"
-              placeholder="Name"
-              onChange={(e) => setFullName(e.target.value)}
+              type="email"
+              id="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              placeholder="Email"
             />
           </div>
-        )}
-        <div className="inputs">
-          <MdEmail className="icon" />
-          <input
-            type="email"
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            placeholder="Email"
-          />
-        </div>
-        <div className="inputs">
-          <FaLock className="icon" />
-          <input
-            type="password"
-            id="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            placeholder="Password"
-          />
-        </div>
-        <div>
-          <button className="submit-btn" onClick={() => handleSubmit(action)}>
-            {action === "Login" ? "Submit" : "Register"}
-          </button>
-        </div>
+          <div className="inputs">
+            <FaLock className="icon" />
+            <input
+              type="password"
+              id="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              placeholder="Password"
+            />
+          </div>
+          <div>
+            <button className="submit-btn" onClick={() => handleSubmit(action)}>
+              {action === "Login" ? "Submit" : "Register"}
+            </button>
+          </div>
+        </form>
         <div className="submit-container">
           <div
             className={action === "Sign up" ? "submit g" : "submit"}

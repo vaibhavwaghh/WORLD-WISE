@@ -1,9 +1,7 @@
-// import { useCities } from "../contexts/CitiesContext";
-
-import styles from "./CityItem.module.css";
+import styles from "../../../cssFiles/CityItem.module.css";
 import { Link } from "react-router-dom";
-import Spinner from "./Spinner";
-import useDeleteCity from "../services/useDeleteCity";
+import Spinner from "../../../pages/Spinner";
+import useDeleteCity from "../../../services/cities/useDeleteCity";
 function CityItem({ city }) {
   const { lat, lng, emoji, cityName, date, id } = city;
   const { isLoading, deleteCity } = useDeleteCity();

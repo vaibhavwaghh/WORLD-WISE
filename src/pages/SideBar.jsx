@@ -1,9 +1,9 @@
-import styles from "./Sidebar.module.css";
+import { useContext, useEffect } from "react";
+import styles from "../cssFiles/Sidebar.module.css";
 import Logo from "./Logo";
 import AppNav from "./AppNav";
 import { Outlet } from "react-router-dom";
-import { useAllCity } from "../services/useAllCity";
-import { useContext, useEffect } from "react";
+import { useAllCity } from "../services/cities/useAllCity";
 import { CitiesContext } from "../contexts/CitiesContext";
 function SideBar({ userId }) {
   const { dispatch } = useContext(CitiesContext);

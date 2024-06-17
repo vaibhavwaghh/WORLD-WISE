@@ -1,16 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "./Form.module.css";
-import Button from "./Button";
-import BackButton from "./BackButton";
-import useUrlPosition from "../hooks/useUrlPosition";
-import Message from "./Message";
-import Spinner from "./Spinner";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import useCreateCity from "../services/useCreateCity";
-import { CitiesContext } from "../contexts/CitiesContext";
-// import { useCities } from "../contexts/CitiesContext";
+import { useNavigate } from "react-router-dom";
+import styles from "../../cssFiles/Form.module.css";
+import Button from "../../pages/Button";
+import BackButton from "../../pages/BackButton";
+import useUrlPosition from "../../hooks/useUrlPosition";
+import Message from "../../pages/Message";
+import Spinner from "../../pages/Spinner";
+
+// import "react-datepicker/dist/react-datepicker.css";
+import useCreateCity from "../../services/cities/useCreateCity";
+import { CitiesContext } from "../../contexts/CitiesContext";
+
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
     .toUpperCase()

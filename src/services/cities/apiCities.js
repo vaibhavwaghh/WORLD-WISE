@@ -1,4 +1,4 @@
-import supabase from "./supaBase";
+import supabase from "../supabase";
 export async function getAllCitiesOfUser(userId) {
   let { data, error } = await supabase
     .from("allCities")

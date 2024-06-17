@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUsersDetails } from "./apiAuth";
+import { getUsersDetails } from "../auth/apiAuth";
 
 export function useUserDetails(emailId) {
   const { isLoading, data } = useQuery({
