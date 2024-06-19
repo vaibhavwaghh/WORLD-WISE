@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import styles from "./../../../cssFiles/City.module.css";
 import { useParams } from "react-router-dom";
+import styles from "./../../../cssFiles/City.module.css";
 import BackButton from "../../../pages/BackButton";
 import { CitiesContext } from "../../../contexts/CitiesContext";
 const formatDate = (date) =>

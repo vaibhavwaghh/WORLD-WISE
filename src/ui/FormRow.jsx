@@ -5,7 +5,7 @@ const StyledFormRow = styled.div`
   align-items: center;
   grid-template-columns: 24rem 1fr 1.2fr;
   gap: 2.4rem;
-
+  margin-top: 2rem;
   padding: 1.2rem 0;
 
   &:first-child {
@@ -14,6 +14,7 @@ const StyledFormRow = styled.div`
 
   &:last-child {
     padding-bottom: 0;
+    margin-right: 4rem;
   }
 
   &:not(:last-child) {
@@ -22,8 +23,8 @@ const StyledFormRow = styled.div`
 
   &:has(button) {
     display: flex;
-    justify-content: flex-end;
-    gap: 1.2rem;
+    justify-content: center;
+    gap: 0.2rem;
   }
 `;
 
@@ -35,9 +36,10 @@ const Error = styled.span`
   font-size: 1.4rem;
   color: var(--color-red-700);
 `;
+
 function FormRow({ label, children, error }) {
   return (
-    <StyledFormRow>
+    <StyledFormRow isCreateNewUserLabel={label === "Create new user"}>
       {label && <Label htmlFor={children.props.id}>{label}</Label>}
       {children}
       {error && <Error>{error}</Error>}

@@ -11,23 +11,31 @@
   /* padding: 2.5rem 5rem; */
 }
 .container {
-  height: 100vh;
+  /* height: 100vh; */
 
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin: auto;
-  width: 50rem;
+  width: 100vw;
   /* background: #fff; */
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
 }
-
+.sign-up-login {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 22rem;
+  width: 60rem;
+}
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 9px;
   width: 100%;
-  margin-top: 30px;
+  margin: 4rem 0;
 }
 
 .text {
@@ -96,14 +104,11 @@
   color: #676767;
 }
 
-.submit-btn {
+.btn {
   background: #4c00b4;
   color: #fff;
   font-size: 2.5rem;
-  margin-top: 4rem;
-  margin-left: 15rem;
-  border-radius: 2mm;
-  /* padding: 1rem; */
+
   cursor: pointer;
   align-items: center;
   width: 220px;

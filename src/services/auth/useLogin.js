@@ -9,7 +9,7 @@ function useLogin() {
   const { mutate: login, isLoading } = useMutation({
     mutationFn: ({ email, password }) => loginApi({ email, password }),
     onSuccess: (user) => {
-      console.log(user);
+      console.log("THIS IS FROM USE LOGIN", user);
       queryClient.setQueryData(['"user"'], user?.user);
       navigate("/app", { replace: true });
     },

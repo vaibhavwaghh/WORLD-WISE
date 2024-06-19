@@ -10,7 +10,8 @@ import Spinner from "./pages/Spinner";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import LoginSignup from "./features/authentication/LoginSignup";
+import Signup from "./features/authentication/Signup";
+import Login from "./features/authentication/Login";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const Product = lazy(() => import("./pages/product"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
@@ -39,8 +40,8 @@ function App() {
                   <Route path="countries" element={<CountryList />} />
                   <Route path="form" element={<Form />}></Route>
                 </Route>
-                <Route path="login" element={<LoginSignup />} />
-
+                <Route path="login" element={<Login />} />
+                <Route path="signup" element={<Signup />} />
                 <Route path="*" element={<PageNotFound />} />
               </Routes>
             </Suspense>

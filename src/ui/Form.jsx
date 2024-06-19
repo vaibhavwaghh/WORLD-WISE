@@ -19,6 +19,7 @@ const Form = styled.form`
     `}
     
   overflow: hidden;
+  margin-left: 35rem;
   font-size: 1.4rem;
 `;
 

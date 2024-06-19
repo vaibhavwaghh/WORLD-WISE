@@ -7,6 +7,7 @@ export async function loginApi({ email, password }) {
   });
 
   if (error) {
+    alert(error.message);
     throw new Error(error.message);
   }
   console.log("THIS IS EMAIL ID PASSWORD AND DATA ", email, password, data);
@@ -19,6 +20,7 @@ export async function getCurrentUser() {
   const { data, error } = await supabase.auth.getUser();
 
   if (error) {
+    alert(error.message);
     throw new Error(error.message);
   }
   return data?.user;
@@ -41,7 +43,10 @@ export async function signupApi({ fullName, email, password }) {
     fullName,
   });
 
-  if (error) throw new Error(error.message);
+  if (error) {
+    alert(error.message);
+    throw new Error(error.message);
+  }
   return data;
 }
 
@@ -50,14 +55,17 @@ export async function createNewUser({ fullName, email }) {
     .from("users")
     .insert({ fullName, email });
   if (error) {
+    alert(error.message);
     throw new Error(error.message);
   }
+  console.log("THIS IS CREATE NEW USER ", data);
   return data;
 }
 
 export async function logOutApi() {
   const { error } = await supabase.auth.signOut();
   if (error) {
+    alert(error.message);
     throw new Error(error.message);
   }
 }
@@ -65,7 +73,10 @@ export async function logOutApi() {
 export async function createNewCity(newCity) {
   console.log("THIS IS NEW CITY", newCity);
   const { data, error } = await supabase.from("allCities").insert(newCity);
-  if (error) throw new Error(error.message);
+  if (error) {
+    alert(error.message);
+    throw new Error(error.message);
+  }
 
   return data;
 }
@@ -75,6 +86,9 @@ export async function deleteCityApi(id) {
     .from("allCities")
     .delete()
     .eq("id", id);
-  if (error) throw new Error();
+  if (error) {
+    alert(error.message);
+    throw new Error();
+  }
   return data;
 }
