@@ -1,11 +1,8 @@
-import Form from "../../ui/Form";
-import FormRow from "../../ui/FormRow";
-import Input from "../../ui/Input";
 import "../../cssFiles/LoginSignup.css";
 import useLogin from "../../services/auth/useLogin";
 import { useForm } from "react-hook-form";
 import Spinner from "../../pages/Spinner";
-import Button from "../../ui/Button";
+
 import { useNavigate } from "react-router-dom";
 function Login() {
   const navigate = useNavigate();
@@ -32,9 +29,10 @@ function Login() {
               <div className="text">Login</div>
               <div className="underline"></div>
             </div>
-            <Form onSubmit={handleSubmit(onSubmit)}>
-              <FormRow label="Email address" error={errors?.email?.message}>
-                <Input
+            <form className="form" onSubmit={handleSubmit(onSubmit)}>
+              <div className="form-row">
+                <label className="label">Email address</label>
+                <input
                   type="email"
                   id="email"
                   {...register("email", {
@@ -45,13 +43,12 @@ function Login() {
                     },
                   })}
                 />
-              </FormRow>
+                <span className="error">{errors?.email?.message}</span>
+              </div>
 
-              <FormRow
-                label="Password (min 8 characters)"
-                error={errors?.password?.message}
-              >
-                <Input
+              <div className="form-row">
+                <label className="label">Password (min 8 characters)</label>
+                <input
                   type="password"
                   id="password"
                   {...register("password", {
@@ -62,15 +59,16 @@ function Login() {
                     },
                   })}
                 />
-              </FormRow>
+                <span className="error">{errors?.password?.message}</span>
+              </div>
 
-              <FormRow>
-                <Button variation="secondary" type="reset">
+              <div className="submit-btn-login">
+                <button className="cancel-btn" type="reset">
                   Cancel
-                </Button>
-                <Button size="large">Submit</Button>
-              </FormRow>
-            </Form>
+                </button>
+                <button className="submit-btn">Submit</button>
+              </div>
+            </form>
             <div className="sign-up-login">
               <button className="btn" onClick={handleNavigate2}>
                 Login

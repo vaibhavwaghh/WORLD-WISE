@@ -1,13 +1,7 @@
 import "../../cssFiles/LoginSignup.css";
-import { useState } from "react";
-
 import useSignUp from "../../services/auth/useSignUp";
-
 import { useForm } from "react-hook-form";
-import Form from "../../ui/Form";
-import FormRow from "../../ui/FormRow";
-import Input from "../../ui/Input";
-import Button from "../../ui/Button";
+
 import Spinner from "../../pages/Spinner";
 import { useNavigate } from "react-router-dom";
 import useCreateUser from "../../services/auth/useCreateUser";
@@ -39,19 +33,22 @@ function Signup() {
           <div className="text">Sign up</div>
           <div className="underline"></div>
         </div>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <FormRow label="Full name" error={errors?.fullName?.message}>
-            <Input
+        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-row">
+            <label className="label">Full name</label>
+            <input
               type="text"
               id="fullName"
               {...register("fullName", {
                 required: "This field is required",
               })}
             />
-          </FormRow>
+            <span className="error">{errors?.fullName?.message}</span>
+          </div>
 
-          <FormRow label="Email address" error={errors?.email?.message}>
-            <Input
+          <div className="form-row">
+            <label className="label">Email address</label>
+            <input
               type="email"
               id="email"
               {...register("email", {
@@ -62,13 +59,13 @@ function Signup() {
                 },
               })}
             />
-          </FormRow>
 
-          <FormRow
-            label="Password (min 8 characters)"
-            error={errors?.password?.message}
-          >
-            <Input
+            <span className="error">{errors?.fullName?.message}</span>
+          </div>
+
+          <div className="form-row">
+            <label className="label">Password (min 8 characters)</label>
+            <input
               type="password"
               id="password"
               {...register("password", {
@@ -79,13 +76,12 @@ function Signup() {
                 },
               })}
             />
-          </FormRow>
+            <span className="error">{errors?.fullName?.message}</span>
+          </div>
 
-          <FormRow
-            label="Repeat password"
-            error={errors?.passwordConfirm?.message}
-          >
-            <Input
+          <div className="form-row">
+            <label className="label">Repeat password</label>
+            <input
               type="password"
               id="passwordConfirm"
               {...register("passwordConfirm", {
@@ -94,15 +90,16 @@ function Signup() {
                   value === getValues().password || "Passwords need to match",
               })}
             />
-          </FormRow>
+            <span className="error">{errors?.fullName?.message}</span>
+          </div>
 
-          <FormRow>
-            <Button variation="secondary" type="reset">
+          <div className="submit-btn-signup">
+            <button className="cancel-btn" type="reset">
               Cancel
-            </Button>
-            <Button>Create new user</Button>
-          </FormRow>
-        </Form>
+            </button>
+            <button className="submit-btn">Create new user</button>
+          </div>
+        </form>
         <div className="sign-up-login">
           <button className="btn" onClick={handleNavigate2}>
             Login
